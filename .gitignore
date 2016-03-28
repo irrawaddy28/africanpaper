@@ -1,0 +1,7 @@
+# ignore back up files
+*~
+
+# ignore compilation files
+*.aux
+*.bbl
+
