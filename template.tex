@@ -59,7 +59,7 @@ We explain some terms that will be frequently used in this paper. The term ``det
 %This is further aggravated by the fact the workers are unlikely to transcribe a phone if it is outside their %native language but is part of the language $L$.
 
 Collecting and processing PTs for audio data in the target language $L$ from crowd workers who do not understand $L$ is called \emph{mismatched crowdsourcing} \cite{Jyothi-MismatchedCrowdsourcingTrans}. The language $L$ is the language we want to recognize using an automatic speech recognition (ASR) system trained using PTs. The objective of this study is to present a complete ASR training procedure to recognize African languages for which we have PTs but no DTs. 
- The following five low resource conditions outine the nature of the data used in this study:  \vspace{-1mm}
+ The following five low resource conditions outline the nature of the data used in this study:  %\vspace{-1mm}
 \begin{itemize}[leftmargin=*]
 \item PTs in Target Language: PTs in the target language $L$ are collected from crowd workers who do not speak $L$. \vspace{-2mm}
 \item PTs are limited: The amount of PTs available from the crowd workers is limited to only 40 minutes of audio.  \vspace{-2mm}
@@ -140,22 +140,23 @@ Collecting and processing PTs for audio data in the target language $L$ from cro
   \caption{A probabilistic transcription (PT) for the word \emph{cat}.}
   \label{fig:pt}
   \end{subfigure}%
-  \vspace{-2mm}
+  \vspace{-1mm}
 \end{figure}
 
-
-\section{Sub-Saharan African Languages}  \vspace{-2mm}
+\section{Sub-Saharan African Languages}  \vspace{-1mm}
 \label{sec:Sub-Saharan African Languages}
-\subsection{Swahili}  \vspace{-2mm}
-\textbf{Swahili phonology details here}
-\subsection{Amharic}  \vspace{-2mm}
-\textbf{Amharic phonology details here}
+\subsection{Swahili} 
+Swahili is a widely spoken language in Southeast Africa with up to 15 million speakers. Swahili's written system uses a variant of the Latin alphabet; it consists of digraphs (other than the standard ones like ch, sh) that correspond to prenasalized consonants which appear in many African languages. Swahili has only five vowel sounds with no diphthongs. 
+
+\subsection{Amharic}  
+Amharic is the primary language spoken in Ethiopia with over 22 million speakers. The Amharic script has more than 280 distinct characters (or fidels) representing various consonant+vowel sounds. Ejective consonants and labialized sounds are special characteristics of Amharic's phonology. There are seven vowel sounds in Amharic and no diphthongs. 
+
 \subsection{Dinka}  \vspace{-2mm}
 Dinka is a Western Nilotic language which is a member of the family of Nilo-Saharan languages. It is spoken by over 2 million people living in South Sudan. The four major dialects are Padang, Rek, Agar, and Bor of which the Rek dialect is considered the standard dialect of Dinka. This study is based on the Rek dialect. The Dinka orthography of Dinka closely follows its pronunciation. There are 33 alphabets in the Dinka orthography which are borrowed from a mixture of Latin and IPA alphabets \cite{DinkaOmniglot}. Furthermore, 4 out of the 33 alphabets are digraphs. The Dinka phonolgy consists of 7 vowels and 20 consonants \cite{Remijsen-LuanyjangDinka}.
 
 The set of vowels comprises of \{/\textipa{a}/, /\textipa{e}/, /\textipa{E}/, /\textipa{i}/, /\textipa{o}/, /\textipa{O}/, /\textipa{u}\}. Coincidentally, the orthographic symbols of these vowels are same as the phonemic symbols. The vowels often have a creaky quality. With the exception of /\textipa{u}/, these vowels  could also have a breathy quality. For example, the breathy version of /\textipa{a}/ is /\textipa{\"*a}/ and orthographically represented as \textipa{\"a}. The breathy vowels are characterized by lower F1 values. In addition, there is relatively more energy at higher frequencies than at lower frequencies in the creaky vowels when compared with breathy vowels. Vowel lengths can be short or long. Orthographically, long vowels are usually indicated by repeating the letter twice. For example, the word \emph{n\textipa{\"e}\textipa{\"e}} is pronounced as \emph{\textipa{n}\textipa{e}:} .
 
-The 20 Dinka consonants are given in Table \ref{Tab:Consonants in the Dinka language}. Voiced and voiceless plosives occur at five places of articulation gradually moving from external to internal portions of the mouth - labial, dental, alvelolar, palatal, and velar. Nasals follow a similar pattern. Interestingly, there is only one fricative. The 4 digraphs \emph{dh}, \emph{nh}, \emph{th}, \emph{ny} translate to  /\textipa{\|[d}/, /\textipa{\|[n}/, /\textipa{\|[t}/, /\textltailn/ phonemes  respectively.
+The 20 Dinka consonants are given in Table \ref{Tab:Consonants in the Dinka language}. Voiced and voiceless plosives occur at five places of articulation gradually moving from external to internal portions of the mouth - labial, dental, alvelolar, palatal, and velar. Nasals follow a similar pattern. Interestingly, there is only one fricative. The 4 digraphs \emph{dh}, \emph{nh}, \emph{th}, \emph{ny} translate to /\textipa{\|[d}/, /\textipa{\|[n}/, /\textipa{\|[t}/, /\textltailn/ phonemes  respectively.
 
 \begin{table}
 \centering %\begin{center} does the same thing as \centering but inserts an extra line
@@ -185,17 +186,13 @@ To accumulate the PTs, each utterance was transcribed by 10 distinct Turkers. Fi
 
 To accumulate the DTs, the same set of utterances were labeled by native transcribers in the utterance language. This was necessary for comparing the ASR outputs against ground truth labels. For the DTs, the canonical pronunciation of a word was derived from a lexicon. If a lexicon was not available, a language specific G2P model was used.
 
-
 Next, language dependent phones were merged to a compact multilingual phone set to enable data sharing across languages. Language specific diacritics such as tones and stress markers tend to make the phone symbols unique to a particular language. Therefore,  diacritics were removed. 
 
-\textbf{Swahili: phone merging goes here}
-
-\textbf{Amharic: phone merging goes here}
+There are two distinct features unique to Swahili consonants (among our chosen set of languages): implosive sounds and prenasalized sounds. To build the multilingual phone set, the implosive sounds were merged with their corresponding non-implosive counterparts (e.g. \textipa{\!b} $\rightarrow$ \textipa{b}, \textipa{\!d} $\rightarrow$ \textipa{d}). The prenasalized consonants were written as phone pairs combining a nasal sound with the consonant sound (i.e. \textipa{mb} $\rightarrow$ \textipa{m} \textipa{b}). Amharic's phonology has a particularly distinct feature: ejective consonants. These ejectives were mapped to aspirated variants of their corresponding base consonants (e.g. \textipa{t'} $\rightarrow$ \textipa{t\super h}, \textipa{p'} $\rightarrow$ \textipa{p\super h}). Labialized sounds in Amharic were written as the base sound preceded by the voiced labio-velar approximant sound, \textipa{w} (e.g. \textipa{a\super w} $\rightarrow$ \textipa{w} \textipa{a}).
 
 With a few exceptions for which we had to find approximate maps, most Dinka vowels and consonants were already a part of the multilingual set. Since breathy vowels are very specific to Dinka, all breathy vowels were mapped down to the regular vowels. For example, \textipa{\"*a} $\rightarrow$ \textipa{a}. The long vowels \textipa{E:} and \textipa{o:} were mapped by repeating the symbols twice: \textipa{E:} $\rightarrow$ \textipa{E}\textipa{E}, \textipa{o:} $\rightarrow$ \textipa{o}\textipa{o}. Finally, the dental nasal was mapped to the alveolar nasal: \textipa{\|[n} $\rightarrow$ \textipa{n}. 
 
 %If an IPA phone symbol was unique in the sense that it appeared in the phone transcriptions of only one language, then that symbol was merged with another symbol which differs in only one distinctive feature. Repeating this process several times guarantees that each phone is represented in at least two languages. This enables sharing data across languages. The merged phone set is the multilingual or universal phone set. The total number of phones in the multilingual set (i.e., all languages from SW to UR) was 82 which excludes the silence phone.
-
 
 Finally, phone based language models (LMs) for Swahili were built from the text in Wikipedia. For Amharic and Dinka, phone LMs were built from the DTs although these could also be built from the web. In all experiments, target language phone LMs are always used. The corpus is summarized in Table \ref{Tab:SBS Corpus}. Each utterance contains about 5 seconds of real speech data. Duration of pauses were not counted into 5 seconds.
 
