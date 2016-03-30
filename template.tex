@@ -23,6 +23,7 @@
 \DeclareMathOperator*{\argmin}{arg\,min}
 \newcommand{\mytikzscale}{0.9}
 \newcommand{\myvspacefig}{\vspace{-4mm}}
+\newcommand{\myvspacesec}{\vspace{-2mm}}
 
 \sloppy % better line breaks
 \ninept
@@ -31,16 +32,16 @@
 
 \makeatletter
 \def\name#1{\gdef\@name{#1\\}}
-\makeatother \name{{\em Amit Das$^\star$\thanks{$^\star$first authors}, Preethi Jyothi$^\star$, Mark Hasegawa-Johnson\footnotemark[1]}}
+\makeatother \name{{\em Amit Das$^\star$\thanks{$^\star$first authors}$^{1,2}$, Preethi Jyothi$^\star$$^2$, Mark Hasegawa-Johnson$^{1,2}$}}
 
-\address{Department of Electrical and Computer Engineering \\
-University of Illinois at Urbana-Champaign \\
-Illinois, IL 61801, USA \\
+\address{$^1$Department of ECE, University of Illinois at Urbana-Champaign, USA \\
+$^2$Beckman Institute, University of Illinois at Urbana-Champaign, USA \\
 {\small \tt \{amitdas, pjyothi, jhasegaw\}@illinois.edu}}
 
 \begin{document}
 \maketitle
-
+%%%%%%%%%% TO DO %%%%%%%%%%%%%%%%
+% Remember to remove the line about bottleneck features from the online abstract. The abstract in this draft is accurate and hence be used to replace the online abstract.
 \begin{abstract}
 In this study, we develop automatic speech recognition systems for three sub-Saharan African languages
 using probabilistic transcriptions collected from crowd workers who neither speak nor have any familiarity 
@@ -51,6 +52,7 @@ with the African languages. There is a language mismatch in this scenario. More 
 African languages
 \vspace{-3mm}
 %
+\myvspacesec
 \section{Introduction}  \vspace{-2mm}
 \label{sec:Introduction}
 This work is focussed on knowledge transfer from multilingual data collected from a set of source (train) languages to a target (test) language that is mutually exclusive to the source set. More specifically, we assume that we have easy access to native transcripts in the source languages but that we do not have native transcripts in the target language. However, mismatched transcripts for the target language (i.e. transcriptions in a different orthography) can be easily obtained from crowd workers on platforms such as Amazon's Mechanical Turk%
@@ -149,16 +151,17 @@ The objective of this study is to present a complete ASR training procedure to r
   \vspace{-1mm}
 \end{figure}
 
+
 \section{Sub-Saharan African Languages}  \vspace{-1mm}
 \label{sec:Sub-Saharan African Languages}
 \subsection{Swahili}  \vspace{-1mm}
 Swahili is a widely spoken language in Southeast Africa with over 15 million speakers. Swahili's written system uses a variant of the Latin alphabet; it consists of digraphs (other than the standard ones like ch, sh, etc.) corresponding to prenasalized consonants that appear in many African languages. Swahili has only five vowel sounds with no diphthongs. 
 
-\subsection{Amharic}  
+\subsection{Amharic}  \vspace{-1mm}
 Amharic is the primary language spoken in Ethiopia with over 22 million speakers. The Amharic script has more than 280 distinct characters (or {\em fidels}) representing various consonant+vowel sounds. Ejective consonants and labialized sounds are special characteristics of Amharic's phonology. There are seven vowels, thirty one consonant sounds in Amharic and no diphthongs. More details of Amharic phonology are in \cite{Tachbelie2014}.
 
-\subsection{Dinka}  \vspace{-2mm}
-Dinka is a Western Nilotic language which is a member of the family of Nilo-Saharan languages. It is spoken by over 2 million people living in South Sudan. The four major dialects are Padang, Rek, Agar, and Bor of which the Rek dialect is considered the standard dialect of Dinka. This study is based on the Rek dialect. The orthography of Dinka closely follows its pronunciation. There are 33 alphabet symbols in the Dinka orthography which are borrowed from a mixture of Latin and IPA alphabets \cite{DinkaOmniglot}. Furthermore, 4 out of the 33 symbols are digraphs. The Dinka phonology consists of 7 vowels and 20 consonants \cite{Remijsen-LuanyjangDinka}, described in more detail below.
+\subsection{Dinka} \vspace{-1mm}
+Dinka is a Western Nilotic language which is a member of the family of Nilo-Saharan languages. It is spoken by over 2 million people living in South Sudan. The four major dialects are Padang, Rek, Agar, and Bor of which the Rek dialect is considered the standard dialect of Dinka. This study is based on the Rek dialect. The orthography of Dinka closely follows its pronunciation. There are 33 alphabet symbols in the Dinka orthography which are borrowed from a mixture of Latin and IPA alphabets \cite{DinkaOmniglot}. Furthermore, 4 out of the 33 symbols are digraphs. The Dinka phonology \cite{Remijsen-LuanyjangDinka} consists of 7 vowels and 20 consonants, described in more detail below.
 
 The set of vowels comprises \{/\textipa{a}/, /\textipa{e}/, /\textipa{E}/, /\textipa{i}/, /\textipa{o}/, /\textipa{O}/, /\textipa{u}/\}. Coincidentally, the orthographic symbols of these vowels are the same as their corresponding phonemic IPA symbols. The vowels often have a creaky quality. With the exception of /\textipa{u}/, these vowels could also have a breathy quality. For example, the breathy version of /\textipa{a}/ is /\textipa{\"*a}/, orthographically represented as \textipa{\"a}. The breathy vowels are characterized by lower F1 values. Compared to breathy vowels, creaky vowels have relatively more energy at higher frequencies. Vowel lengths can be short or long. Orthographically, long vowels are usually indicated by repeating the letter twice. For example, the word \emph{n\textipa{\"e}\textipa{\"e}} is pronounced as \emph{/\textipa{n}/ /\textipa{\"*e:}~/}.
 
@@ -182,13 +185,14 @@ Lat. Approx. &   & & \phantom{m}\quad\textipa{l} & &  \\ \hline
 \label{Tab:Consonants in the Dinka language}
 \end{table}
 
+\myvspacesec
 \section{Training an ASR system using Probabilistic Transcripts}  \vspace{-2mm}
 \label{sec:ASR Steps}
 \subsection{Data} \vspace{-1mm}
 Multilingual audio files were obtained from the Special Broadcasting Service (SBS) network~\cite{SBS} which publishes multilingual radio podcasts in Australia. These data include over 1000 hours of speech in 68 languages.
-The following languages were used in our experiments - Swahili (SW), Amharic (AM), Dinka (DI), Hungarian (HG), Cantonese (CA), Mandarin (MD), Arabic (AR), Urdu (UR). However, only the sub-Saharan languages - Swahili, Amharic, Dinka - were considered as the target languages. The remaining languages represent the set of source languages. The podcasts were not entirely homogeneous in the target language and contained utterances interspersed with segments of music and English. An HMM-based language identification system was used to isolate regions that correspond mostly to the target language. These long segments were then split into smaller 5-second chunks. The short segments make it easier for crowd workers to annotate since they are unfamiliar with the utterance language. More than 2500 Turkers participated in these tasks, with roughly 30\% of them claiming to know only English. The remaining Turkers claimed to know other languages such as Spanish, French, German, Japanese, and Chinese. Since English was the most common language among crowd workers, they were asked to annotate the sounds in the 5-second utterances using English letters that most closely matched the audio. The sequence of letters were not meant to correspond to meaningful English words or sentences as this was found to be detrimental to the final performance~\cite{Jyothi2015}. PTs and DTs, worth about 1 hour of audio, were collected from crowd workers and native transcribers respectively. Thus, the training set consists of a) about 40 minutes of PTs in the target language and, b) about 40 minutes of DTs in other source languages  excluding the target language. The development and test sets were worth roughly 10 minutes each. 
+The following languages were used in our experiments - Swahili, Amharic, Dinka, Hungarian, Cantonese, Mandarin, Arabic, Urdu . However, only the sub-Saharan languages - Swahili, Amharic, Dinka - were considered as the target languages. The remaining languages represent the set of source languages. The podcasts were not entirely homogeneous in the target language and contained utterances interspersed with segments of music and English. An HMM-based language identification system was used to isolate regions that correspond mostly to the target language. These long segments were then split into smaller 5-second chunks. The short segments make it easier for crowd workers to annotate since they are unfamiliar with the utterance language. More than 2500 Turkers participated in these tasks, with roughly 30\% of them claiming to know only English. The remaining Turkers claimed to know other languages such as Spanish, French, German, Japanese, and Chinese. Since English was the most common language among crowd workers, they were asked to annotate the sounds in the 5-second utterances using English letters that most closely matched the audio. The sequence of letters were not meant to correspond to meaningful English words or sentences as this was found to be detrimental to the final performance~\cite{Jyothi2015}. PTs and DTs, worth about 1 hour of audio, were collected from crowd workers and native transcribers respectively. Thus, the training set consists of a) about 40 minutes of PTs in the target language and, b) about 40 minutes of DTs in other source languages  excluding the target language. The development and test sets were worth roughly 10 minutes each. 
 
-To accumulate the PTs, each utterance was transcribed by 10 distinct Turkers. First the letters in the transcripts were mapped to IPA symbols using a misperception G2P model learned from the source languages. More specifically, the misperceptions of the crowd workers were approximated by letter-to-phone mappings learned from mismatched transcripts and their corresponding DTs in the \emph{source languages}. No target language data is used while estimating the misperception G2P model since we assume there are no DTs in the target language. Multiple mismatched transcripts, collected for the same utterance, were then merged into a compact structure by aligning the sequences (after defining equivalence classes for similar sounds). The process of creating PTs is detailed further in~\cite{Jyothi-MismatchedCrowdsourcingTrans}.
+To accumulate the PTs, each utterance was transcribed by 10 distinct Turkers. First the letters in the transcripts were mapped to IPA symbols using a misperception G2P model learned from the source languages. More specifically, the misperceptions of the crowd workers were approximated by letter-to-phone mappings learned from mismatched transcripts and their corresponding DTs in the \emph{source languages}. No target language data are used while estimating the misperception G2P model since we assume there are no DTs in the target language. Multiple mismatched transcripts, collected for the same utterance, were then merged into a compact structure by aligning the sequences (after defining equivalence classes for similar sounds). The process of creating PTs is detailed further in~\cite{Jyothi-MismatchedCrowdsourcingTrans}.
 
 To accumulate DTs, the same set of utterances were labeled by native transcribers in the utterance language. 
 DTs were mainly accumulated for data in the source languages; these  were used in the estimation of the mismatched G2P model. For ASR evaluation purposes, DTs were also acquired for a small amount of development/evaluation data in the target languages. For the words in the DTs, canonical pronunciations of the words were derived from a lexicon. If a lexicon was not available, a language specific G2P model was used~\cite{MarkG2P}.
@@ -234,11 +238,11 @@ swh        & 35.63 (47.00)   & 34.18 (39.49)   \\
 amh        & 51.90 (48.68)   & 46.63 (43.92)   \\ 
 din        & 51.56 (47.03)   & 48.58 (48.40)  \\ \hline 
 \end{tabular}
-\vspace{-5mm}
+\vspace{-2mm}
 \label{Tab:PER_Matched_Monolingual}
 \end{table}
 
-\subsection{Monolingual HMM and DNN}
+\subsection{Monolingual HMM and DNN} \vspace{-1mm}
 \label{sec:Monolingual HMM and DNN}
 We first build monolingual Gaussian mixture (GMM) based hidden Markov models (HMM) and deep neural network (DNN) models trained using DTs in the target language. This is an oracle baseline since it assumes the ideal scenario of DTs in the target language being available during training time. This baseline is an estimate of the best possible (lower bound) PER.
 %
@@ -253,7 +257,7 @@ swh      &65.73 (67.58)   &61.17 (63.12) & 1003 \\
 amh      &68.40 (68.20)   &66.53 (65.39) &  987 \\ 
 din     &66.89 (67.24)   &64.78 (65.15) & 1002  \\ \hline
 \end{tabular}
-\vspace{-7mm}
+\vspace{-5mm}
 \label{Tab:PER_Mismatched_Multilingual}
 \end{table}
 
@@ -290,18 +294,18 @@ Context-dependent GMM-HMM acoustic models were trained using 39-dimensional Mel 
 
 For DNN training, we start with greedy layer-wise Restricted Boltzmann Machines (RBMs) unsupervised pre-training since this leads to better initialization \cite{Bengio-Pretraining}. Then the DNNs were fine-tuned using supervised cross-entropy training. The DNNs were trained using 6 hidden layers with 1024 nodes per layer. All experiments were conducted using the Kaldi toolkit \cite{Povey-Kaldi}. The monolingual PERs over a total of about 7K-8K phones are given in Table \ref{Tab:PER_Matched_Monolingual}. 
 
-\subsection{Multilingual HMM and DNN}
+\subsection{Multilingual HMM and DNN} \vspace{-1mm}
 \label{sec:Multilingual HMM and DNN}
 DTs from the source languages were used to train multilingual HMMs and DNNs. Since we assume zero DTs in the target language during training, the DTs used for training multilingual HMM and DNN exclude any data in the target language. The steps for building HMM and DNN systems were the same as in Section \ref{sec:Monolingual HMM and DNN} except that the training data consists of multilingual DTs. The PERs are given in Table \ref{Tab:PER_Mismatched_Multilingual}. Unsurprisingly, due to the lack of DTs in the target language, the PERs are much higher than the oracle monolingual case in Table \ref{Tab:PER_Matched_Monolingual}. Hence, the PERs in Table \ref{Tab:PER_Mismatched_Multilingual} establish the upper bound of PERs. In all subsequent experiments, our goal is to start from the upper bound of PERs in Table \ref{Tab:PER_Mismatched_Multilingual} and attempt to approach the lower bound PERs in Table \ref{Tab:PER_Matched_Monolingual}. 
 %\subsection{Self Training}
 %\label{sec:Self Training}
 %In this self-training experiment, the multilingual DNN decodes the audio in the target language and then uses a subset of decoded labels, with high confidences, to retrain itself in the target language \cite{Knill-SelfTrainingAndUnsupAdapt}, \cite{Vesely-SemisupTrainingDNN}. We will refer to the high confidence decoded labels as self-training labels or transcripts (STs) since they are used to retrain the system which generated the labels. The objective of this experiment is to evaluate the efficacy of the STs vs PTs. Since we are interested in generating STs from an ASR, we ignore the PTs from crowd workers and decode the 40 minutes of audio in the training set using the multilingual DNN from Section \ref{sec:Multilingual HMM and DNN}. The results are given in Table \ref{Tab:PER_ASRPT_DNN_monosoftmax}. Compared to the multilingual DNN in Table \ref{Tab:PER_Mismatched_Multilingual}, the improvement due to self-training is in the range 1.01\%-2.20\%. We determined frame confidence thresholds as 0.5 or 0.6 from the development set.
 
-\subsection{PT Adapted MAP-HMM}
+\subsection{PT Adapted MAP-HMM} \vspace{-1mm}
 \label{sec:PT Adapted MAP-HMM}
 In this step, the multilingual systems in Section \ref{sec:Multilingual HMM and DNN} are adapted using only the PTs in the target language since DTs are not available for adaptation. The multilingual HMM can be adapted using maximum aposteriori (MAP) adaptation described in more detail in \cite{Liu-PTAdaptedGMM}. We briefly review the steps here. The goal is to obtain meaningful adaptation data using the PTs. For our implementation, we follow the Weighted Finite Transducer (WFST)~\cite{Mohri-WFST} framework both during training and testing. The ASR search graph is represented as a WFST mapping the acoustic signal to a sentence and is defined by the composition $H \circ C \circ L \circ G$ where $H$ maps a sequence of HMM states to a triphone sequence, $C$ maps triphone to monophone sequences, $L$ maps monophone sequences to words (pronunciation model) and $G$ reorders the resulting word sequence (language model). Since our tasks involve phone recognition, $L$ is an identity mapping of phones and $G$ is a phone $N$-gram model. In the case of DTs, the training graph for a transcript $DT$ is constructed using $H \circ C \circ L \circ DT$ where $DT$ is a linear chain acceptor representing a \emph{single} sequence of phones. In the case of PTs, the training graph is $H \circ C \circ L \circ G \circ PT$ where $PT$ is a \emph{confusion network} of phones (similar to Fig. \ref{fig:pt}) obtained from crowd workers. Considering the PTs as adaptation transcripts, the sufficient statistics required for MAP adaptation are obtained from the lattice  $H \circ C \circ L \circ G \circ PT$. There is no change in the testing stage, i.e., we look for the 1-best path in the decoding lattice $H \circ C \circ L \circ G$. The PER results for the MAP adapted HMM are under the column heading MAP-HMM in Table \ref{Tab:PER_PT}. The PER results for the multilingual DNN, under the column heading MULTI-DNN in Table \ref{Tab:PER_PT}, is replicated from Table \ref{Tab:PER_Mismatched_Multilingual} for comparison purposes.
 
-\subsection{PT Adapted DNN}
+\subsection{PT Adapted DNN} \vspace{-1mm}
 \label{sec:PT Adapted DNN}
 We briefly review different strategies for DNN adaptation using PTs. These are illustrated in Fig.~\ref{fig:DNN} and described in greater detail in \cite{Das-PTAdaptedDNN}. In Fig.~\ref{fig:DNN}(a), the softmax layer of the multilingual DNN in Section \ref{sec:Multilingual HMM and DNN} is replaced by another randomly initialized softmax layer while the shared hidden layers (SHLs) of the multilingual DNN are retained. The resulting DNN is fine tuned using the PT alignments generated by the MAP adapted HMM from Section \ref{sec:PT Adapted MAP-HMM}. This is the conventional way to adapt a DNN using DTs \cite{Ghoshal-MultilingualPretraining}. However, this approach does not work very well for PTs largely due to the presence of incorrect labels in PTs. The results for DNN-1 are under the column heading DNN-1 in Table \ref{Tab:PER_PT}. The performance of DNN-1 is worse than MAP-HMM for Swahili and only marginally better for the other languages. To alleviate the effect of incorrect labels, the DNN-2 system of Fig.~\ref{fig:DNN}(b) is used. In this approach, two separate softmax layers are used. The first softmax layer is trained with target language PTs only whereas the second softmax layer is trained with multilingual DTs. In Fig.~\ref{fig:DNN}(c), there is a third softmax layer trained using self-training transcripts (ST). Here, the DNN-2 system decodes some additional unlabeled audio in the target language and then uses a subset of the decoded labels, with high posterior probabilities (confidences), to retrain itself in the target language. The self-training algorithm is a semi-supervised algorithm to train DNNs \cite{Vesely-SemisupTrainingDNN}. We report the results only for the DNN-2 system in Table \ref{Tab:PER_PT}. The absolute decrease in PER compared to DNN-1 is consistent and is in the range 1.11\%-2.16\%. Comparing the most adapted system (DNN-2) with the unadapted system (MULTI), the total absolute decrease in PER is in the range 6.56\%-18.14\%.
 
@@ -310,11 +314,13 @@ We briefly review different strategies for DNN adaptation using PTs. These are i
  % \includegraphics[width=\linewidth,height=5cm,keepaspectratio]{fig/DNN_multisoftmax.eps}
  \includegraphics[width=\linewidth,height=5cm]{fig/DNN_multisoftmax.eps} 
  \myvspacefig
-  \caption{DNN adaptation using probabilistic transcripts (PT).}
+ \myvspacefig
+  \caption{DNN adaptation using probabilistic transcripts (PT).} 
  \label{fig:DNN}
 \end{figure}
 
-\subsection{Probabilistic Error Rate}
+\vspace{-1mm}
+\subsection{Probabilistic Error Rate} \vspace{-1mm}
 \label{sec:Probabilistic Error Rate}
 The aforementioned sections computed the phone error rates by measuring the edit distance between the 1-best path in the ASR decoding lattice and the reference DT. Hence, they may be considered as deterministic PERs. Our assumption was that there were no DTs in the target language in the training stage. Thus, it is fair to assume that there may not be DTs in the target language in the testing stage as well. An obvious question is how do we evaluate ASR systems for the target language in the absence of DTs? In the absence of DTs, we consider PTs to serve as a proxy for the reference ground truth labels. We denote the edit distance between the 1-best path in the ASR decoding lattice and the PTs as probabilistic phone error rate (PPER).
 %We compute two different kinds of PPER - unweighted PPER (U-PPER) and weighted PPER (W-PPER). U-PPER is computed as follows. First, the PTs are pruned to retain the most reliable transcripts. Next, the probabilities on the arcs of the pruned PTs are stripped making the PT unweighted. Finally, the edit distance between the 1-best path in the ASR decoding lattice and the unweighted pruned PT is computed. For W-PPER, the only change is that the probabilities on the arcs of the pruned PTs are retained.
@@ -328,17 +334,22 @@ This is calculated as follows. First, the PTs are pruned to retain the most reli
    \hline
 Lang  & \multicolumn{2}{c}{PPER (\%)} \\
           &  MULTI - MAP-HMM & MULTI - DNN-2  \\ \hline
-swh      &  ??-??=?? & ?? - ?? = ??  \\
-amh      & 64.46 - 57.16 = 7.3   & 64.46 - 59.80 = 4.67  \\ 
-din     &64.09 - 58.59 = 5.5   &64.09 - 60.64 = 3.45 \\ \hline
+swh      &  58.61 - 46.12 = 12.49 & 58.61 - 51.12 = 7.49  \\
+amh      & 64.46 - 57.16 = 7.30   & 64.46 - 59.80 = 4.67  \\ 
+din      & 64.09 - 58.59 = 5.50   & 64.09 - 60.64 = 3.45 \\ \hline
 \end{tabular}
 \caption{Probabilistic Phone Error Rates} \label{Tab:PPER}
-\vspace{-5mm}
+\vspace{-7mm}
 \end{table}
 
-\vspace{-3mm}
-\section{Conclusions}
-In this study, we presented a complete set of ASR training methods to train HMM and DNN systems using no deterministic but only probabilistic transcripts in Swahili, Amharic, and Dinka. We reported absolute phone error rate improvements of the PT adapted systems in the range 6.56\%-18.14\%. In addition, we found improvements in probabilistic error rates can correlate well with the improvements in deterministic phone rates. This is useful in the absence of deterministic transcripts in the test set.
+\myvspacesec
+\section{Conclusions} \vspace{-1mm}
+In this study, we presented a complete end-to-end ASR training regime to train HMM and DNN systems using only probabilistic transcripts in Swahili, Amharic, and Dinka but no deterministic transcripts. We reported absolute phone error rate improvements of the PT adapted systems in the range 6.56\%-18.14\%. In addition, we found improvements in probabilistic error rates can correlate well with the improvements in deterministic phone rates. This is useful in the absence of deterministic transcripts in the test set.
+
+\myvspacesec
+\vspace{-2mm}
+\section{Acknowledgements} \vspace{-1mm}
+The authors are thankful to a) Dr. Bert Remijsen (University of Edinburgh) for sharing his knowledge on the Dinka language; b) Wenda Chen (University of Illinois) for his help with coordinating with transcribers on Upwork.
 
 % To start a new column (but not a new page) and help balance the last-page
 % column length use \vfill\pagebreak.
